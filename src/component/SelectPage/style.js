@@ -8,6 +8,9 @@ export default {
     subtitle: { fontSize: '16px', margin: '0px 0px 19px' },
   },
   platform: {
+    link: {
+      textDecoration: 'none',
+    },
     item: {
       cursor: 'pointer',
       border: '1px solid #979797',

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { StyleRoot } from 'radium';
 import SelectPage from './component/SelectPage';

@@ -3,26 +3,10 @@
 - const showWhenActive = (sdk !== targetSDK)? Style.Hide: {};
 - const highlightWhenActive = (sdk === targetSDK)? Style.platform.Active: {};
 
-section(style=[ Style.platform.item, highlightWhenActive ], onClick=setSDK(targetSDK))
+a(style=[ Style.platform.link], href="https://docs.skygear.io/guides/installation/"+targetSDK, target="_blank")
+  section(style=[ Style.platform.item, highlightWhenActive ])
+    span(style=[ Style.platform.icon ], dangerouslySetInnerHTML={__html:Icon[targetSDK]})
+    h3(style=[ Style.platform.title ])= title
+    p(style=[ Style.platform.desc ])= desc
 
-  span(style=[ Style.platform.tick, showWhenActive ], dangerouslySetInnerHTML={__html:Icon.tick})
-
-  span(style=[ Style.platform.icon ], dangerouslySetInnerHTML={__html:Icon[targetSDK]})
-  h3(style=[ Style.platform.title ])= title
-  p(style=[ Style.platform.desc ])= desc
-
-  div(style=[ Style.project.row, showWhenActive ])
-
-    // project: new
-    div(style=[ Style.project.column ])
-      div(style=[ Style.project.item ], onClick=setProject('new'))
-        span(style=[ Style.project.icon ], dangerouslySetInnerHTML={__html:Icon.new})
-        h3(style=[ Style.project.title ]) New App from Template
-        p(style=[ Style.project.desc ]) Start with a scaffold project
-
-    // project: existing
-    div(style=[ Style.project.column ])
-      div(style=[ Style.project.item ], onClick=setProject('existing'))
-        span(style=[ Style.project.icon ], dangerouslySetInnerHTML={__html:Icon.app})
-        h3(style=[ Style.project.title ]) Start from Scratch
-        p(style=[ Style.project.desc ]) Integrate Skygear into an existing project
+    div(style=[ Style.project.row, showWhenActive ])

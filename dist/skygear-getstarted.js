@@ -4754,6 +4754,9 @@ module.exports =
 	    subtitle: { fontSize: '16px', margin: '0px 0px 19px' }
 	  },
 	  platform: {
+	    link: {
+	      textDecoration: 'none'
+	    },
 	    item: {
 	      cursor: 'pointer',
 	      border: '1px solid #979797',
@@ -4899,86 +4902,38 @@ module.exports =
 	module.exports= function (locals) {  var sdk = "sdk" in locals ? locals.sdk : jade_globals_sdk;
 	  var targetSDK = "targetSDK" in locals ? locals.targetSDK : jade_globals_targetSDK;
 	  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
-	  var setSDK = "setSDK" in locals ? locals.setSDK : jade_globals_setSDK;
 	  var Icon = "Icon" in locals ? locals.Icon : jade_globals_Icon;
 	  var title = "title" in locals ? locals.title : jade_globals_title;
 	  var desc = "desc" in locals ? locals.desc : jade_globals_desc;
-	  var setProject = "setProject" in locals ? locals.setProject : jade_globals_setProject;
 	  return function() {
 	    var tags = [];
 	    React.createElement;
 	    const showWhenActive = sdk !== targetSDK ? Style.Hide : {};
 	    const highlightWhenActive = sdk === targetSDK ? Style.platform.Active : {};
-	    tags.push(React.DOM.section.apply(React.DOM, [ {
-	      style: [ Style.platform.item, highlightWhenActive ],
-	      onClick: setSDK.bind(null, targetSDK)
+	    tags.push(React.DOM.a.apply(React.DOM, [ {
+	      style: [ Style.platform.link ],
+	      href: "https://docs.skygear.io/guides/installation/" + targetSDK,
+	      target: "_blank"
 	    } ].concat(function() {
-	      return [ React.DOM.span.apply(React.DOM, [ {
-	        style: [ Style.platform.tick, showWhenActive ],
-	        dangerouslySetInnerHTML: {
-	          __html: Icon.tick
-	        }
-	      } ]), React.DOM.span.apply(React.DOM, [ {
-	        style: [ Style.platform.icon ],
-	        dangerouslySetInnerHTML: {
-	          __html: Icon[targetSDK]
-	        }
-	      } ]), React.DOM.h3.apply(React.DOM, [ {
-	        style: [ Style.platform.title ]
+	      return [ React.DOM.section.apply(React.DOM, [ {
+	        style: [ Style.platform.item, highlightWhenActive ]
 	      } ].concat(function() {
-	        return [ title ];
-	      }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	        style: [ Style.platform.desc ]
-	      } ].concat(function() {
-	        return [ desc ];
-	      }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	        style: [ Style.project.row, showWhenActive ]
-	      } ].concat(function() {
-	        return [ React.DOM.div.apply(React.DOM, [ {
-	          style: [ Style.project.column ]
+	        return [ React.DOM.span.apply(React.DOM, [ {
+	          style: [ Style.platform.icon ],
+	          dangerouslySetInnerHTML: {
+	            __html: Icon[targetSDK]
+	          }
+	        } ]), React.DOM.h3.apply(React.DOM, [ {
+	          style: [ Style.platform.title ]
 	        } ].concat(function() {
-	          return [ React.DOM.div.apply(React.DOM, [ {
-	            style: [ Style.project.item ],
-	            onClick: setProject.bind(null, "new")
-	          } ].concat(function() {
-	            return [ React.DOM.span.apply(React.DOM, [ {
-	              style: [ Style.project.icon ],
-	              dangerouslySetInnerHTML: {
-	                __html: Icon["new"]
-	              }
-	            } ]), React.DOM.h3.apply(React.DOM, [ {
-	              style: [ Style.project.title ]
-	            } ].concat(function() {
-	              return [ "New App from Template" ];
-	            }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	              style: [ Style.project.desc ]
-	            } ].concat(function() {
-	              return [ "Start with a scaffold project" ];
-	            }.call(this))) ];
-	          }.call(this))) ];
+	          return [ title ];
+	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
+	          style: [ Style.platform.desc ]
+	        } ].concat(function() {
+	          return [ desc ];
 	        }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	          style: [ Style.project.column ]
-	        } ].concat(function() {
-	          return [ React.DOM.div.apply(React.DOM, [ {
-	            style: [ Style.project.item ],
-	            onClick: setProject.bind(null, "existing")
-	          } ].concat(function() {
-	            return [ React.DOM.span.apply(React.DOM, [ {
-	              style: [ Style.project.icon ],
-	              dangerouslySetInnerHTML: {
-	                __html: Icon.app
-	              }
-	            } ]), React.DOM.h3.apply(React.DOM, [ {
-	              style: [ Style.project.title ]
-	            } ].concat(function() {
-	              return [ "Start from Scratch" ];
-	            }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	              style: [ Style.project.desc ]
-	            } ].concat(function() {
-	              return [ "Integrate Skygear into an existing project" ];
-	            }.call(this))) ];
-	          }.call(this))) ];
-	        }.call(this))) ];
+	          style: [ Style.project.row, showWhenActive ]
+	        } ]) ];
 	      }.call(this))) ];
 	    }.call(this))));
 	    if (1 === tags.length) return tags.pop();
